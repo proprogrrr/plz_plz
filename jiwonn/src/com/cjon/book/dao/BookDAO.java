@@ -278,7 +278,7 @@ public class BookDAO {
 			// 결과값은 영향을 받은 레코드의 수
 			
 			if(rs.next()){
-				System.out.println("로그인됨");
+				System.out.println("로그인 ok");
 				result = true;
 			}else{
 				result = false;

@@ -21,17 +21,12 @@ import com.cjon.book.service.BookService;
 public class SessionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+  
     public SessionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession(true);
@@ -48,7 +43,7 @@ public class SessionServlet extends HttpServlet {
 		
 			obj = new JSONObject();
 			obj.put("result", true);
-			System.out.println("세션 없음!!! 로그인하셈");
+			System.out.println("세션이 없어요. 로그인하세요!!");
 			
 			
 		}else{
@@ -57,7 +52,6 @@ public class SessionServlet extends HttpServlet {
 			
 			System.out.println(id);
 			System.out.println(login);
-		
 			
 			obj = new JSONObject();
 			obj.put("result", false);
@@ -66,7 +60,6 @@ public class SessionServlet extends HttpServlet {
 		
 		result = obj.toJSONString();
 
-	
 		response.setContentType("text/plain; charset=utf8");
 		PrintWriter out = response.getWriter();
 		out.println(callback + "(" + result + ")");
@@ -74,9 +67,7 @@ public class SessionServlet extends HttpServlet {
 		out.close();
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

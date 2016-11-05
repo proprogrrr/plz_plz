@@ -40,7 +40,7 @@ public class LogoutServlet extends HttpServlet {
 			System.out.println("세션이 종료되었습니다.");
 
 		}else{
-			System.out.println("세션이 존재하지 않습니다.");
+			System.out.println("세션이 존재하지 않습니다!!!");
 		}
 		
 		
