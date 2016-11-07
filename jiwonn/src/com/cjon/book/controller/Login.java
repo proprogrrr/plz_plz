@@ -31,13 +31,13 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 책 표지, 책제목, 저자, 가격,등록하기
+		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 				
 		
 		String callback = request.getParameter("callback");
-		System.out.println(id);
+		System.out.println(id+": 아이디값");
 		System.out.println(password);
 		// 2. 로직처리
 		BookService service = new BookService();

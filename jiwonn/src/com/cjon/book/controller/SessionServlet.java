@@ -29,37 +29,35 @@ public class SessionServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String callback = request.getParameter("callback");
+		String check = request.getParameter("quit");
+		
+		System.out.println("세션 체크 시작");
+		
 		HttpSession session = request.getSession(true);
 		String sessionid = (String) session.getAttribute("id");
-		String callback = request.getParameter("callback");
-		String result = null;
-		boolean result1 = false;
+		
+		
+		if(check!=null){
+			if(check.equals("t")){
+				session.invalidate();
+				System.out.println("세션을 만료시킵니다.");
+			}
+		}
+	
+	
+		boolean result = true;
 			
-		
-		JSONObject obj = null;
-		
-		
-		if(sessionid==null){
-		
-			obj = new JSONObject();
-			obj.put("result", true);
-			System.out.println("세션이 없어요. 로그인하세요!!");
-			
-			
+		if(sessionid!=null){
+			result = true;
+			System.out.println("세션이 존재합니다.");
 		}else{
-			String id = request.getParameter("id");
-			String login = request.getParameter("login");
-			
-			System.out.println(id);
-			System.out.println(login);
-			
-			obj = new JSONObject();
-			obj.put("result", false);
-			
+			result = false;
+			System.out.println("세션이 존재하지 않습니다!!");
 		}
 		
-		result = obj.toJSONString();
-
+		
+	
 		response.setContentType("text/plain; charset=utf8");
 		PrintWriter out = response.getWriter();
 		out.println(callback + "(" + result + ")");

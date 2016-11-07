@@ -6,11 +6,7 @@ public class BookService {
 
 	// 리스트를 가져오는 일을 하는 method
 	public String getList(String keyword) {
-		// 일반적인 로직처리 나와요!!
 		
-		// 추가적으로 DB처리가 나올 수 있어요!
-		// DB처리는 Service에서 처리는하는게 아니라..다른 객체를 이용해서
-		// Database처리를 하게 되죠!!
 		BookDAO dao = new BookDAO();
 		String result = dao.select(keyword);	
 		
@@ -53,6 +49,16 @@ public class BookService {
 	}
 	
     
+	public String selectOneMember(String id){
+		
+		BookDAO dao = new BookDAO();
+		String result = dao.selectOneMember(id);
+		return result;
+		
+	}
+    
+    
+    
     public Boolean login(String id, String password) {
 		
 		BookDAO dao = new BookDAO();
@@ -67,6 +73,95 @@ public class BookService {
 		return result;
 	}
 
+	
+    public boolean commentInsert(String id, String isbn, String title, String author, String password, String text, String content,String img){
+		
+		BookDAO dao = new BookDAO();
+		boolean result = dao.commentInsert(id,isbn,title,author,password,text,content,img);
+		return result;
+		
+	}
+	
+	public String commentList(String reviewisbn){
+		
+		BookDAO dao = new BookDAO();
+		String result = dao.commentList(reviewisbn);
+		return result;
+		
+	}
+	
+public String commentContent(String cid){
+		
+		BookDAO dao = new BookDAO();
+		String result = dao.commentContent(cid);
+		return result;
+		
+	}
+	
+	public String commentKeywordList(String search){
+		
+		BookDAO dao = new BookDAO();
+		String result = dao.commentKeywordList(search);
+		return result;
+		
+	}
+	
+	public boolean deleteComment(int seq){
+		
+		BookDAO dao = new BookDAO();
+		boolean result = dao.deleteComment(seq);
+		return result;
+		
+	}
+	
+	
+
+		public String userRentStatusList(String id, String userId){
+			
+			
+			BookDAO dao = new BookDAO();
+			String result = dao.userRentStatusList(id,userId);
+			
+			return result;
+			
+		}
+		
+		//도서 대여 관리를 위한 전체 도서 리스트 출력
+		public String getrbookList(String keyword, String userId){
+			
+			
+			BookDAO dao = new BookDAO();
+			String result = dao.getrbookList(keyword,userId);
+			
+			return result;
+			
+		}
+		
+		//도서 대여 관리를 위한 도서 대여여부 업데이트
+		public boolean updaterentbook(String keyword, String id){
+				
+				
+			BookDAO dao = new BookDAO();
+			boolean result = dao.updaterentbook(keyword,id);
+			
+			return result;
+				
+		}
+		
+		// 도서반납 하기  업데이트
+			public boolean returnbookupdate(String keyword, String id){
+					
+					
+				BookDAO dao = new BookDAO();
+				boolean result = dao.returnbookupdate(keyword,id);
+				
+				return result;
+					
+			}
+			
+	
+	
+	
 	
 	
 	
